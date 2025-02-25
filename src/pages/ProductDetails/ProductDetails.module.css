@@ -1,0 +1,134 @@
+.productSection {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 200px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .texture {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40%;
+  }
+  
+  .productBorder {
+    width: 80%;
+    margin-top: 95px;
+  }
+  
+  .details {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .image {
+    width: 45%;
+    height: 80vh;
+    object-fit: contain;
+    background-color: white;
+    padding: 2px;
+    border-radius: 5px;
+  }
+  
+  .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+  
+  .topinfo {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-top: 25px;
+    margin-left: 0;
+    padding-left: 0;
+  }
+  
+  .topinfo h1 {
+    font-size: 40px;
+    width: 90%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .category {
+    margin-top: 15px;
+  }
+  
+  .description, .rating, .price {
+    width: 85%;
+    margin-top: 25px;
+    font-size: 20px;
+  }
+
+  .bottominfo {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    margin-bottom: 50px;
+    font-family: "Playfair Display", serif;
+  }
+
+  .price {
+    margin-top: 50px;
+  }
+  
+  .backButton {
+    position: absolute;
+    right: 0;
+    margin-top: 15px;
+    color: white;
+    background-color: #282c34;
+    padding: 4px 8px 4px 8px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: none;
+  }
+  
+  .backButton:hover {
+    background-color: #f4ae2c;
+    transition: 0.3s ease-in-out;
+    color: black;
+    cursor: pointer;
+  }
+
+  .buyButton {
+    height: 35px;
+    width: 100px;
+    position: relative;
+  }
+
+  .buyButton button {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #f4ae2c;
+    border: none;
+    font-size: 15px;
+  }
+
+  .buyButton button:hover {
+    cursor: pointer;
+    background-color: #2d5348;
+    color: white;    
+    transition: 0.2s;
+  }
+
+  .buyButton button.clicked {
+    transform: scale(0.9);
+    background-color: #3e8e41;
+  }
+
+  .successMessage {
+    transition: 0.2s;
+  }

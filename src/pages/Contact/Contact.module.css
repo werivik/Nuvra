@@ -1,0 +1,163 @@
+.texture {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 60%;
+  }
+
+.contactSection {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 100px;
+}
+
+.contactBorder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.leftImage {
+    width: 45%;
+    height: 100%;
+    max-height: 100vh;
+    position: relative;
+}
+
+.contactImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.contactContent {
+    width: 40%;
+    height: 80%;
+    margin-left: 2.5%;
+    margin-right: 5%;
+    padding: 25px;
+    margin-top: 100px;
+    background-color: white;
+    border-radius: 5px;
+    z-index: 998;
+    position: relative;
+}
+
+.contactContent h1 {
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.contactContent form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.contactContent form .formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 18px;
+}
+
+#email {
+    margin-bottom: 50px;
+}
+
+#subject input {
+    width: 98%;
+}
+
+.formGroup input {
+    width: 75%;
+    height: 25px;
+    padding: 5px;
+}
+
+.formGroup textarea {
+    height: 140px;
+    padding: 5px;
+    width: 98%;
+}
+
+.submitButtonSection {
+    margin-top: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+}
+
+.submitButton {
+    height: 100%;
+    width: 25%;
+    min-width: 100px;
+    border: none;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: #f4ae2c;
+}
+
+.submitButton:hover {
+    cursor: pointer;
+    transition: 0.2s;
+    background-color: #2d5348;
+    color: white;
+}
+
+.successMessage {
+    transition: 0.6s;
+    height: 92.5%;
+    width: 92.5%;
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    top: 0;
+    left: 0;
+    border-radius: 5px;
+    padding: 25px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.successMessage h3 {
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.successMessage p {
+    font-size: 18px;
+}
+
+.backButton {
+    margin-top: 50px;
+
+    text-decoration: none;
+    color: black;
+    background-color: #f4ae2c;
+    width: 120px;
+    height: 25px;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.backButton:hover {
+    transition: 0.2s;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
