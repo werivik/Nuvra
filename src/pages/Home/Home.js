@@ -12,7 +12,7 @@ function Home() {
   const [products, setProducts] = useState([]);
   const [visibleCount, setVisibleCount] = useState(8);
   const [searchTerm, setSearchTerm] = useState("");
-  const [suggestion, setSuggestion] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
 
   useEffect(() => {
     fetch('https://v2.api.noroff.dev/online-shop')
@@ -33,26 +33,33 @@ function Home() {
     setSearchTerm(value);
   
     if (value.trim() === "") {
-      setSuggestion("");
+      setSuggestions([]);
       return;
     }
-  
-    const matchedProduct = products.find(product => 
+
+    const matchedProducts = products.filter(product =>
       product.title.toLowerCase().startsWith(value.toLowerCase())
     );
-  
-    setSuggestion(matchedProduct ? matchedProduct.title.slice(value.length) : "");
+
+    setSuggestions(matchedProducts);
   };
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    if (suggestion) {
-      setSearchTerm(searchTerm + suggestion);
-      setSuggestion("");
+    if (suggestions.length === 1) {
+      setSearchTerm(suggestions[0].title);
+      setSuggestions([]);
     }
   };
 
-  const filteredProducts = products.filter(product => product.title.toLowerCase().includes(searchTerm.toLowerCase()));
+  const handleSuggestionClick = (suggestion) => {
+    setSearchTerm(suggestion.title);
+    setSuggestions([]);
+  };
+
+  const filteredProducts = products.filter(product => 
+    product.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div>
@@ -94,22 +101,34 @@ function Home() {
                   value={searchTerm}
                   onChange={handleSearchChange}
                   placeholder="Search products..."
-                /> 
+                />
                 <img src={magnifier} alt="Search Icon" className={styles.magnifier} />
-                {suggestion && <span className={styles.suggestion} style={{ opacity: 0.5 }}>{suggestion}</span>}
               </form>
+              {suggestions.length > 0 && (
+                <ul className={styles.suggestionList}>
+                  {suggestions.map((product, index) => (
+                    <li 
+                      key={index} 
+                      className={styles.suggestionItem}
+                      onClick={() => handleSuggestionClick(product)}
+                    >
+                      {product.title}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
             {filteredProducts.length > 0 ? (
               <ul className={styles.productList}>
-              {filteredProducts.slice(0, visibleCount).map((product) => (
-                <li key={product.id} className={styles.productCard}>
-                  <Link to={`/products/${product.id}`}>
-                    <img src={product.image.url} alt={product.title} className={styles.productImage} />
-                    <h2 className={styles.productTitle}>{product.title}</h2>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+                {filteredProducts.slice(0, visibleCount).map((product) => (
+                  <li key={product.id} className={styles.productCard}>
+                    <Link to={`/products/${product.id}`}>
+                      <img src={product.image.url} alt={product.title} className={styles.productImage} />
+                      <h2 className={styles.productTitle}>{product.title}</h2>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             ) : (
               <p>No products found.</p>
             )}
