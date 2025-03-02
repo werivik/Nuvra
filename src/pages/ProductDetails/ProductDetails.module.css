@@ -131,4 +131,18 @@
 
   .successMessage {
     transition: 0.2s;
+    width: 200px;
+    position: absolute;
+  }
+
+  .stars {
+    display: flex;
+    flex-direction: row;
+    gap: 2.5px;
+  }
+
+  .ratingStar {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
   }

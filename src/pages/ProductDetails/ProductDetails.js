@@ -5,6 +5,10 @@ import styles from './ProductDetails.module.css';
 import texture from '/media/leavesshadow.png';
 import { useShoppingCart } from "../ShoppingCart/ShoppingCart";
 
+import emptyStar from "../../../media/ratings/emptystar.png";
+import halfStar from "../../../media/ratings/halfstar.png";
+import fullStar from "../../../media/ratings/fullstar.png";
+
 function ProductDetails() {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -38,6 +42,19 @@ function ProductDetails() {
     }, 1000);
   };
 
+  const getStars = (rating) => {
+    const fullStars = Math.floor(rating);
+    const halfStars = (rating % 1 >= 0.5) ? 1 : 0;
+    const emptyStars = 5 - fullStars - halfStars;
+
+    const stars = [];
+    for (let i = 0; i < fullStars; i++) stars.push(fullStar);
+    for (let i = 0; i < halfStars; i++) stars.push(halfStar);
+    for (let i = 0; i < emptyStars; i++) stars.push(emptyStar);
+
+    return stars;
+  };
+
   return (
     <div className={styles.productSection}>
       <img src={texture} alt="texture" className={styles.texture} />
@@ -49,11 +66,17 @@ function ProductDetails() {
             <div className={styles.topinfo}>
               <h1>{product.title}</h1>
               <p className={styles.category}><strong>Category:</strong> {product.tags.join(', ')}</p>
-                <button className={styles.backButton} onClick={() => navigate(-1)}>Go Back</button>
+              <button className={styles.backButton} onClick={() => navigate(-1)}>Go Back</button>
             </div>
             <div className={styles.bottominfo}>
               <p className={styles.description}><strong>Description:</strong> {product.description}</p>
-              <p className={styles.rating}><strong>Rating:</strong> {product.rating}</p>
+              <div className={styles.rating}>
+                <div className={styles.stars}>
+                  {getStars(product.rating).map((star, index) => (
+                    <img key={index} src={star} alt="star" className={styles.ratingStar} />
+                  ))}
+                </div>
+              </div>
               <p className={styles.price}><strong>Price:</strong> $ {product.discountedPrice.toFixed(2)}</p>
             </div>
             <div className={styles.buyButton}>
@@ -75,3 +98,4 @@ function ProductDetails() {
 }
 
 export default ProductDetails;
+
