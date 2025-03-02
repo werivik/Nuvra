@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useShoppingCart } from "../../pages/ShoppingCart/ShoppingCart";
 import styles from "./Header.module.css";
-import shoppingBag from '/media/icons/shoppingBag.png';
+import shoppingBag from '/media/icons/shoppingbag.png';
 
 function Header() {
   const { getTotalItems } = useShoppingCart();
