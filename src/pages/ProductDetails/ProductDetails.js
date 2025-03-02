@@ -1,6 +1,6 @@
-import { useNavigate } from "react-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 import styles from './ProductDetails.module.css';
 import texture from '/media/leavesshadow.png';
 import { useShoppingCart } from "../ShoppingCart/ShoppingCart";

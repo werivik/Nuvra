@@ -141,7 +141,6 @@
 
 .backButton {
     margin-top: 50px;
-
     text-decoration: none;
     color: black;
     background-color: #f4ae2c;
@@ -153,6 +152,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 5px;
+    transition: 0.2s;
 }
 
 .backButton:hover {

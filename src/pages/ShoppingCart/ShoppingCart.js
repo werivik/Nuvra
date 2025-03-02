@@ -1,65 +1,25 @@
-import { createContext, useContext, useState, useEffect } from "react";
-import { useNavigate } from "react-dom";
+import { useState, useEffect, createContext, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './ShoppingCart.module.css';
-import trashcan from '/media/icons/trashicon.png';
-import texture from '/media/leavesshadow.png';
+import texture from '../../../media/leavesshadow.png';
+import trashcan from '../../../media/icons/trashicon.png';
+import arrowIcon from '../../../media/icons/arrow.png';
 
 const ShoppingCartContext = createContext();
 
-export function useShoppingCart() {
+export const useShoppingCart = () => {
   return useContext(ShoppingCartContext);
-}
-
-export function ShoppingCartProvider({ children }) {
-  const [cartItems, setCartItems] = useState([]);
-
-  function addToCart(product) {
-    setCartItems((prevItems) => {
-      const existingItem = prevItems.find(item => item.id === product.id);
-      if (existingItem) {
-        return prevItems.map(item =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      } 
-      
-      else {
-        return [...prevItems, { ...product, quantity: 1 }];
-      }
-    });
-  }
-
-  function updateQuantity(productId, newQuantity) {
-    if (newQuantity < 1) return;
-    setCartItems((prevItems) =>
-      prevItems.map(item =>
-        item.id === productId ? { ...item, quantity: newQuantity } : item
-      )
-    );
-  }
-
-  function removeFromCart(productId) {
-    setCartItems((prevItems) => prevItems.filter(item => item.id !== productId));
-  }
-
-  function getTotalItems() {
-    return cartItems.reduce((total, item) => total + item.quantity, 0);
-  }
-
-  function clearCart() {
-    setCartItems([]);
-  }
-
-  return (
-    <ShoppingCartContext.Provider value={{ cartItems, addToCart, updateQuantity, removeFromCart, getTotalItems, clearCart }}>
-      {children}
-    </ShoppingCartContext.Provider>
-  );
-}
+};
 
 export default function ShoppingCart() {
   const { cartItems, updateQuantity, removeFromCart, getTotalItems } = useShoppingCart();
   const [productsData, setProductsData] = useState([]);
+  const [isRightSideOpen, setIsRightSideOpen] = useState(false);
   const navigate = useNavigate();
+
+  const toggleRightSide = () => {
+    setIsRightSideOpen(!isRightSideOpen);
+  };
 
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -74,9 +34,7 @@ export default function ShoppingCart() {
         );
         const products = await Promise.all(detailsPromises);
         setProductsData(products);
-      } 
-      
-      catch (error) {
+      } catch (error) {
         console.error("Error fetching product details:", error);
       }
     };
@@ -97,13 +55,12 @@ export default function ShoppingCart() {
   return (
     <div className={styles.shoppingSection}>
       <div className={styles.shoppingBorder}>
-        <div className={styles.leftSide}>
+        <div className={`${styles.leftSide} ${isRightSideOpen ? styles.blur : ""}`}>
           <div className={styles.textureimage}>
             <img src={texture} alt="texture" className={styles.texture} />
           </div>
           <h1>Shopping Cart</h1>
-          
-              <button className={styles.backButton} onClick={() => navigate(-1)}>Go Back</button>
+          <button className={styles.backButton} onClick={() => navigate(-1)}>Go Back</button>
 
           {cartItems.length === 0 ? (
             <p className={styles.cartinfotext}>Your shopping cart is empty.</p>
@@ -161,7 +118,10 @@ export default function ShoppingCart() {
           )}
         </div>
 
-        <div className={styles.rightSide}>
+        <div className={`${styles.rightSide} ${isRightSideOpen ? styles.showRightSide : ""}`}>
+          <div className={styles.rightSideArrow} onClick={toggleRightSide}>
+            <img src={arrowIcon} alt="Arrow Icon" className={styles.arrowIcon} />
+          </div>
           <h3>Cart Summary</h3>
           <div className={styles.priceSummary}>
             <p><strong>Total Discount:</strong> $0.00</p>
@@ -180,3 +140,55 @@ export default function ShoppingCart() {
     </div>
   );
 }
+
+export const ShoppingCartProvider = ({ children }) => {
+  const [cartItems, setCartItems] = useState([]);
+
+  const addToCart = (product) => {
+    setCartItems((prevItems) => {
+      const existingItem = prevItems.find(item => item.id === product.id);
+      if (existingItem) {
+        return prevItems.map(item =>
+          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+        );
+      } else {
+        return [...prevItems, { ...product, quantity: 1 }];
+      }
+    });
+  };
+
+  const updateQuantity = (id, quantity) => {
+    setCartItems((prevItems) =>
+      prevItems.map(item =>
+        item.id === id ? { ...item, quantity } : item
+      )
+    );
+  };
+
+  const removeFromCart = (id) => {
+    setCartItems((prevItems) => prevItems.filter(item => item.id !== id));
+  };
+
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
+  const getTotalItems = () => {
+    return cartItems.reduce((total, item) => total + item.quantity, 0);
+  };
+
+  return (
+    <ShoppingCartContext.Provider
+      value={{
+        cartItems,
+        addToCart,
+        removeFromCart,
+        updateQuantity,
+        clearCart,
+        getTotalItems,
+      }}
+    >
+      {children}
+    </ShoppingCartContext.Provider>
+  );
+};

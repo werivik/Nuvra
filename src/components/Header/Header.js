@@ -14,7 +14,7 @@ function Header() {
           <li className={styles.leftside}><Link to="/Contact">Contact Us</Link></li>
           <Link to="/" className={styles.logo}>Nuvra</Link>
           <li className={styles.rightside}>
-            <Link to="/">Products</Link>
+            <Link to="/products">Products</Link>
             <div className={styles.rightsidecart}> 
               <Link to="/ShoppingCart">
                 <p style={{ opacity: totalItems > 0 ? 1 : 0 }}>{totalItems}</p>
@@ -29,5 +29,3 @@ function Header() {
 }
 
 export default Header;
-
-

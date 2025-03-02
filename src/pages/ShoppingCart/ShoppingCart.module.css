@@ -260,3 +260,10 @@ box-shadow: inset 32px 5px 57px -37px rgba(0,0,0,0.08);
     font-size: 14px;
     width: 55%;
 }
+
+.arrowIcon {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    opacity: 0;
+}
