@@ -26,6 +26,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .titleFilter h1 {
@@ -42,9 +43,10 @@
   align-items: center;
   text-align: left;
   width: 400px;
-  height: 25px;
+  height: 35px;
   border-radius: 5px;
   background-color: white;
+  z-index: 15;
 }
 
 .searchBar input {
@@ -52,40 +54,42 @@
   padding-left: 12.5px;
   background-color: white;
   border-radius: 5px;
-  border: hidden;
+  border: none;
   height: 25px;
-  z-index: 800;
   outline: none;
   font-size: 16px;
 }
 
-.searchBar .magnifier {
+.magnifier {
   width: 20px;
   height: 25px;
   object-fit: contain;
   z-index: 998;
 }
 
-.suggestion {
-  background-color: white;
-  border-radius: 5px;
-  padding-bottom: 5px;
-  padding-top: 30px;
-  padding-left: 12.5px;
-  width: 387px;
-  max-height: 310px;
-  overflow-y: scroll;
+.suggestionList {
+  display: block;
   position: absolute;
-  top: 100%;
-  margin-top: -25px;
-  left: 0;
-  z-index: 99;
+  top: 100px;
+  right: 0;
+  width: 400px;
+  background-color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 0px 0px 5px 5px;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 10;
   font-size: 16px;
 }
 
-ul a {
-  text-decoration: none;
-  color: black;
+.suggestionItem {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+}
+
+.suggestionItem:hover {
+  background-color: #f0f0f0;
 }
 
 .productList {
@@ -97,9 +101,16 @@ ul a {
   list-style: none;
 }
 
+ul a {
+  text-decoration: none;
+  color: black;
+}
+
 .productCard {
+  font-family: "Playfair Display", serif;
   height: 475px;
   padding: 2px;
+  max-width: 300px;
   border-radius: 5px;
   position: relative;
   display: flex;
@@ -147,7 +158,6 @@ ul a {
   transition: 0.25s;
   font-size: 20px;
 }
-
 
 .loadMoreButton:hover {
   background-color: #f4ae2c;

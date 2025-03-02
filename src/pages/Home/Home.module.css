@@ -185,6 +185,7 @@
   padding: 10px;
   cursor: pointer;
   border-bottom: 1px solid #ddd;
+  opacity: 75%;
 }
 
 .suggestionItem:hover {
