@@ -1,3 +1,10 @@
+.texture {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 60%;
+  }
+  
 .productSection {
     width: 100%;
     height: 100%;
@@ -5,43 +12,92 @@
     display: flex;
     justify-content: center;
     margin-bottom: 200px;
-}
-
-.texture {
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 60%;
-    object-position: right;
-}
-
-.productBorder {
+    margin-top: 0px;
+  }
+  
+  .productBorder {
     width: 80%;
     position: relative;
     margin-top: 100px;
-}
-
-h1 {
-    font-size: 60px;
+  }
+  
+  .titleFilter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .titleFilter h1 {
+    font-size: 50px;
     margin-bottom: 50px;
     margin-top: 50px;
-}
-
-ul {
+  }
+  
+  .searchBar {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    width: 400px;
+    height: 25px;
+    border-radius: 5px;
+    background-color: white;
+  }
+  
+  .searchBar input {
+    width: 375px;
+    padding-left: 12.5px;
+    background-color: white;
+    border-radius: 5px;
+    border: hidden;
+    height: 25px;
+    z-index: 800;
+    outline: none;
+    font-size: 16px;
+  }
+  
+  .searchBar .magnifier {
+    width: 20px;
+    height: 25px;
+    object-fit: contain;
+    z-index: 998;
+  }
+  
+  .suggestion {
+    background-color: white;
+    border-radius: 5px;
+    padding-bottom: 5px;
+    padding-top: 30px;
+    padding-left: 12.5px;
+    width: 387px;
+    max-height: 310px;
+    overflow-y: scroll;
+    position: absolute;
+    top: 100%;
+    margin-top: -25px;
+    left: 0;
+    z-index: 99;
+    font-size: 16px;
+  }
+  
+  ul {
     list-style: none;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: left;
     gap: 20px;
-}
-
-ul a {
+  }
+  
+  ul a {
     text-decoration: none;
     color: black;
-}
-
-.productCard {
+  }
+  
+  .productCard {
     height: 475px;
     width: 250px;
     padding: 2px;
@@ -55,25 +111,37 @@ ul a {
     -moz-box-shadow: 0px 0px 40px -11px rgba(77,77,77,0.28);
     box-shadow: 0px 0px 40px -11px rgba(77,77,77,0.28);
     margin-top: 50px;
-}
-
-.productCard img {
+  }
+  
+  .productCard img {
     width: 90%;
     height: 75%;
     max-height: 325px;
     object-fit: contain;
-}
-
-.productTitle {
+  }
+  
+  .productTitle {
     margin-top: 10px;
     font-size: 20px;
     width: 90%;
     margin-left: 12.5px;
-}
-
-.productCard:hover {
+  }
+  
+  .productCard:hover {
     cursor: pointer;
     transition: 0.2s ease-in-out;
     transform: scale(1.05);
-}
-
+  }
+  
+  .loadMoreButton {
+    background-color: #282c34;
+    border: hidden;
+    padding: 4px 8px 4px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    margin-top: 50px;
+  }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import styles from './Products.module.css';
 import texture from '/media/leavesshadow.png';
 
@@ -20,32 +20,42 @@ function Products() {
   console.log("Products State:", products);
   
   return (
-    <div className={styles.productSection}>
-
-      <img src={texture} alt="texture" className={styles.texture} />
-
-      <div className={styles.productBorder}>
-      <h1>Product List</h1>
-
-      <div>
-      </div>
-
-      {products.length > 0 ? (
-        <ul>
-          {products.map((product) => (
-            <li key={product.id} className={styles.productCard}>
-              <Link to={`/products/${product.id}`}>
-                <img src={product.image} alt={product.title} />
-                <h2 className={styles.productTitle}>{product.title}</h2>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No products found.</p> 
-      )}
-      </div>
-    </div>
+        <div className={styles.productSection}>
+                <div className={styles.textureimage}>
+                  <img src={texture} alt="texture" className={styles.texture} />
+                </div>
+          <div className={styles.productBorder}>
+            <div className={styles.titleFilter}>
+              <h1>Product List</h1>
+              <form onSubmit={handleSearchSubmit} className={styles.searchBar}>
+                <input
+                  type="text"
+                  value={searchTerm}
+                  onChange={handleSearchChange}
+                  placeholder="Search products..."
+                /> <img src={magnifier} alt="Magnifying Glass Icon" className={styles.magnifier} />
+                {suggestion && <span className={styles.suggestion} style={{ opacity: 0.5 }}>{suggestion}</span>}
+              </form>
+            </div>
+            {filteredProducts.length > 0 ? (
+              <ul>
+                {filteredProducts.slice(0, visibleCount).map((product) => (
+                  <li key={product.id} className={styles.productCard}>
+                    <Link to={`/products/${product.id}`}>
+                      <img src={product.image} alt={product.title} />
+                      <h2 className={styles.productTitle}>{product.title}</h2>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>No products found.</p>
+            )}
+            {visibleCount < filteredProducts.length && (
+              <button onClick={loadMore} className={styles.loadMoreButton}>Load More</button>
+            )}
+          </div>
+        </div>
   );
 }
 

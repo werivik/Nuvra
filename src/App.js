@@ -4,9 +4,9 @@ import Home from './pages/Home/Home';
 import Products from './pages/Products/Products';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
 import ShoppingCart from './pages/ShoppingCart/ShoppingCart';
-import Checkout from './pages/Checkout/CheckoutPage';
+import Checkout from './pages/Checkout/Checkout';
 import CheckoutSuccess from './pages/Checkout/CheckoutSuccessPage';
-import Contact from './pages/Contact/ContactPage';
+import Contact from './pages/Contact/Contact';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 
