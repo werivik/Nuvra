@@ -1,11 +1,12 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ShoppingCartProvider } from './pages/ShoppingCart/ShoppingCart';
-
 import Home from './pages/Home/Home';
+import Products from './pages/Products/Products';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
 import ShoppingCart from './pages/ShoppingCart/ShoppingCart';
-import Checkout from './pages/Checkout/Checkout';
-import Contact from './pages/Contact/Contact';
+import Checkout from './pages/Checkout/CheckoutPage';
+import CheckoutSuccess from './pages/Checkout/CheckoutSuccessPage';
+import Contact from './pages/Contact/ContactPage';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 
@@ -20,6 +21,8 @@ function App() {
           <Route path="/shoppingcart" element={<ShoppingCart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/checkoutsuccess" element={<CheckoutSuccess />} />
         </Routes>
         <Footer />
       </Router>

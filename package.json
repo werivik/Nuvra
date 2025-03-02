@@ -10,10 +10,11 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "latest": "^0.2.0",
     "node": "^23.8.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router-dom": "^6.29.0",
+    "react-router-dom": "^6.30.0",
     "styled-components": "^6.1.15"
   },
   "devDependencies": {
