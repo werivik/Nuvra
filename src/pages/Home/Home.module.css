@@ -4,12 +4,10 @@
   top: 0;
   width: 60%;
 }
-
 .homeContent {
   margin-top: 100px;
   position: relative;
 }
-
 .topbanner {
   width: 100%;
   height: 85vh;
@@ -18,7 +16,6 @@
   align-items: center;
   justify-content: center;
 }
-
 .bannerborder {
   width: 79.5%;
   height: 100%;
@@ -26,14 +23,12 @@
   background-color: white;
   border-radius: 5px;
 }
-
 .collageimages {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: row;
 }
-
 .collageImage {
   object-fit: cover;
   width: 100%;
@@ -41,27 +36,23 @@
   border: solid 2px white;
   border-radius: 5px;
 }
-
 .collageLeft{
   width: 50%;
   display: flex;
   flex-direction: column;
 }
-
 .collageTop {
   height: 55%;
+  width: 50%;
   display: flex;
   flex-direction: row;
 }
-
 .collageBottom {
   height: 45%;
 }
-
 .collageRight {
   width: 50%;
 }
-
 .bannercontent {
   position: absolute;
   z-index: 888;
@@ -77,13 +68,11 @@
   flex-direction: column;
   align-items: center;
 }
-
 .bannercontent h1 {
   font-size: 120px;
   margin: 0;
   padding: 0;
 }
-
 .bannercontent .explorebutton {
   background-color: #282c34;
   padding: 5px;
@@ -96,14 +85,12 @@
   transition: 0.3s;
   border: none;
 }
-
 .explorebutton:hover {
   background-color: #f4ae2c;
   color: black;
   cursor: pointer;
   transition: 0.3s;
 }
-
 .productSection {
   width: 100%;
   height: 100%;
@@ -113,13 +100,11 @@
   margin-bottom: 200px;
   margin-top: 0px;
 }
-
 .productBorder {
   width: 80%;
   position: relative;
   margin-top: 100px;
 }
-
 .titleFilter {
   display: flex;
   flex-direction: row;
@@ -127,13 +112,11 @@
   align-items: center;
   position: relative;
 }
-
 .titleFilter h1 {
   font-size: 50px;
   margin-bottom: 50px;
   margin-top: 50px;
 }
-
 .searchBar {
   position: relative;
   display: flex;
@@ -147,7 +130,6 @@
   background-color: white;
   z-index: 15;
 }
-
 .searchBar input {
   width: 375px;
   padding-left: 12.5px;
@@ -158,14 +140,12 @@
   outline: none;
   font-size: 16px;
 }
-
 .magnifier {
   width: 20px;
   height: 25px;
   object-fit: contain;
   z-index: 998;
 }
-
 .suggestionList {
   display: block;
   position: absolute;
@@ -180,65 +160,64 @@
   z-index: 10;
   font-size: 16px;
 }
-
 .suggestionItem {
   padding: 10px;
   cursor: pointer;
   border-bottom: 1px solid #ddd;
   opacity: 75%;
 }
-
 .suggestionItem:hover {
   background-color: #f0f0f0;
 }
-
 .productList {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  padding: 0;
   gap: 20px;
   width: 100%;
+  justify-content: center;
   list-style: none;
 }
-
 .productCard {
   font-family: "Playfair Display", serif;
-  height: 475px;
-  padding: 2px;
-  max-width: 300px;
-  border-radius: 5px;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  text-align: center;
   background-color: white;
-  -webkit-box-shadow: 0px 0px 40px -11px rgba(77,77,77,0.28);
-  -moz-box-shadow: 0px 0px 40px -11px rgba(77,77,77,0.28);
-  box-shadow: 0px 0px 40px -11px rgba(77,77,77,0.28);
-  transition: 0.2s ease-in-out;
-  margin-top: 50px;
+  box-shadow: 0px 0px 40px -11px rgba(77, 77, 77, 0.28);
+  transition: transform 0.2s ease-in-out;
+  height: auto;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
 }
-
 .productCard img {
-  width: 90%;
-  height: 75%;
-  max-height: 350px;
-  object-fit: contain;
+  width: 85%;
+  height: 70%;
+  min-width: 85%;
+  max-width: 85%;
+  margin-left: 7.5%;
+  margin-top: 5%;
+  margin-right: 5%;
+  min-height: 70%;
+  max-height: 70%;
+  background-color: pink;
+  display: block;
+  object-fit: cover;
+  padding: 0;
+  border-radius: 2.5px;
 }
-
 .productTitle {
-  margin-top: 10px;
+  position: absolute;
   font-size: 20px;
   width: 90%;
-  margin-left: 12.5px;
+  bottom: 7.5%;
+  left: 50%;
+  right: 50%;
+  transform: translate(-50%);
 }
-
 .productCard:hover {
   cursor: pointer;
   transition: 0.2s ease-in-out;
   transform: scale(1.05);
 }
-
 .loadMoreButton {
   background-color: #282c34;
   border: hidden;
@@ -253,8 +232,95 @@
   transition: 0.25s;
   font-size: 20px;
 }
-
-
 .loadMoreButton:hover {
   background-color: #f4ae2c;
+}
+@media screen and (max-width: 1050px) {
+  #topRightImage {
+    display: none;
+  }
+  .collageTop {
+    width: 100%;
+  }
+  .bannercontent h1 {
+    font-size: 90px;
+  }
+  .topbanner {
+    height: 75vh;
+  }
+  .productSection {
+    margin-top: -50px;
+  }
+  .titleFilter h1 {
+    font-size: 35px;
+    margin-bottom: 25px;
+    margin-top: 25px;
+  }
+}
+@media screen and (max-width: 988px) {
+  .productList {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  .productCard {
+    height: 275px;
+  }
+  .productCard img {
+    width: 100%;
+    background-color: white;
+    height: 55%;
+  }
+}
+@media screen and (max-width: 850px) {
+  .titleFilter {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+  }
+  .searchBar {
+    width: 100%;
+  }
+  .searchBar input {
+    width: 92.5%;
+    padding-left: 12.5px;
+    background-color: white;
+    border-radius: 5px;
+    border: none;
+    height: 25px;
+    outline: none;
+    font-size: 16px;
+  }
+  .suggestionList {
+    top: 125px;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 799px) { 
+  .productList {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  .productCard {
+    height: 250px;
+  }
+  .productCard img {
+    width: 90%;
+    height: 45%;
+    background-color: white;
+  }
+  .productTitle {
+    font-size: 17px;
+  }
+}
+@media screen and (max-width: 750px) {
+  .bannercontent h1 {
+    font-size: 80px;
+  }
+  .topbanner {
+    height: 55vh;
+  }
+  .productSection {
+    margin-top: -100px;
+  }
+  .productList {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
 }

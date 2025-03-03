@@ -74,7 +74,7 @@ function Home() {
               <div className={styles.collageLeft}>
                 <div className={styles.collageTop}>
                   <img src={bannerImage1} alt="Leather Bags" className={styles.collageImage} />
-                  <img src={bannerImage2} alt="Black Shoes" className={styles.collageImage} />
+                  <img src={bannerImage2} alt="Black Shoes" className={styles.collageImage} id={styles.topRightImage} />
                 </div>
                 <div className={styles.collageBottom}>
                   <img src={bannerImage3} alt="Teapots" className={styles.collageImage} />
