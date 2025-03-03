@@ -4,7 +4,6 @@
     top: 0;
     width: 40%;
   }
-
 .shoppingSection {
     position: relative;
     min-height: 110vh;
@@ -13,7 +12,6 @@
     display: flex;
     justify-content: center;
 }
-
 .shoppingBorder {
     width: 100%;
     height: 100%;
@@ -22,7 +20,6 @@
     flex-direction: row;
     justify-content: space-between;
 }
-
 .leftSide {
     width: 45%;
     height: 100%;
@@ -30,12 +27,10 @@
     margin-top: 100px;
     margin-bottom: 200px;
 }
-
 .leftSide h1 {
     font-size: 50px;
     margin-bottom: 25px;
 }
-
 .backButton {
     background-color: #282c34;
     color: white;
@@ -48,21 +43,18 @@
     right: 40%;
     transition: 0.25s;
 }
-
 .backButton:hover {
     transition: 0.25s;
     cursor: pointer;
     background-color: #f4ae2c;
     color: black;
 }
-
 .cartList {
     display: flex;
     flex-direction: column;
     gap: 50px;
     margin-top: 50px;
 }
-
 .productCard {
     display: flex;
     flex-direction: row;
@@ -78,7 +70,6 @@
     box-shadow: 0px 0px 40px -11px rgba(77,77,77,0.28);
     z-index: 3;
 }
-
 .productCard img {
     position: absolute;
     left: 0;
@@ -87,7 +78,6 @@
     object-fit: cover;
     border-radius: 5px 0px 0px 5px;
 }
-
 .titleDesc {
     position: absolute;
     left: 22.5%;
@@ -98,21 +88,17 @@
     gap: 5px;
     flex-direction: column;
 }
-
 .productPrice {
     position: absolute;
     right: 2.5%;
     font-size: 20px;
 }
-
 .titleDesc h3 {
     font-size: 22px;
 }
-
 .titleDesc p {
     font-size: 15px;
 }
-
 .quantityControl {
     position: absolute;
     left: 72.5%;
@@ -122,7 +108,6 @@
     justify-content: center;
     gap: 2.5px;
 }
-
 .quantityMinusButton {
     background-color: #a96c52;
     border: none;
@@ -135,13 +120,11 @@
     transition: 0.25s;
     color: white;
 }
-
 .quantityMinusButton:hover {
     transition: 0.25s;
     cursor: pointer;
     background-color: #8c0114;
 }
-
 .quantityControl .quantityPlusButton{
     background-color: #bfd0a8;
     border: none;
@@ -153,14 +136,12 @@
     justify-content: center;
     transition: 0.25s;
 }
-
 .quantityControl .quantityPlusButton:hover {
     transition: 0.25s;
     cursor: pointer;
     background-color:#8b967a;
     color: white;
 }
-
 .trashcan {
     width: 30px;
     height: 30px;
@@ -181,7 +162,6 @@ box-shadow: inset 32px 5px 57px -37px rgba(0,0,0,0.08);
     justify-content: center;
     transition: 0.25s;
 }
-
 .trashcan img {
     display: flex;
     align-items: center;
@@ -191,7 +171,6 @@ box-shadow: inset 32px 5px 57px -37px rgba(0,0,0,0.08);
     object-fit: contain;
     transition: 0.3s;
 }
-
 .trashcan:hover {
     transition: 0.25s ease-in-out;
     cursor: pointer;
@@ -204,9 +183,8 @@ box-shadow: inset 32px 5px 57px -37px rgba(0,0,0,0.08);
         filter: invert(100%);
     }
 }
-
 .rightSide {
-    width: 35%;
+    width: 30%;
     margin-top: -100px;
     padding-left: 25px;
     height: 100%;
@@ -223,7 +201,6 @@ box-shadow: inset 32px 5px 57px -37px rgba(0,0,0,0.08);
     font-size: 35px;
     margin-bottom: 50px;
 }
-
 .priceSummary {
     display: flex;
     flex-direction: column;
@@ -231,13 +208,11 @@ box-shadow: inset 32px 5px 57px -37px rgba(0,0,0,0.08);
     font-size: 20px;
     width: 55%;
 }
-
 .priceSummary p {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
-
 .checkoutButton {
     margin-top: 75px;
     margin-bottom: 50px;
@@ -248,51 +223,45 @@ box-shadow: inset 32px 5px 57px -37px rgba(0,0,0,0.08);
     font-size: 16px;
     transition: 0.25s;
 }
-
 .checkoutButton:hover {
     transition: 0.25s;
     cursor: pointer;
     background-color: #282c34;
     color: white;
 }
-
 .costumerRights {
     font-size: 14px;
     width: 55%;
 }
-
 .rightSideArrow {
     position: absolute;
     top: 50%;
-    left: -50px;
-    padding-right: 20px;
+    left: -42.5px;
+    padding-right: 25px;
     cursor: pointer;
-    background-color: pink;
+    background-color: #c8c2b6;
     border-radius: 10px 0px 0px 10px;
-    width: 30px;
-    height: 40px;
+    width: 25px;
+    height: 45px;
     z-index: 2;
     object-fit: contain;
     transition: 0.25s;
     opacity: 0;
     cursor: pointer;
-  }
-
-  .arrowIcon {
+}
+.arrowIcon {
     width: 35px;
     height: 40px;
     object-fit: contain;
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
-  }
-
-  .rightSideArrow:hover {
+}
+.rightSideArrow:hover {
     transition: 0.25s;
-    left: -55px;
+    left: -50px;
     padding-right: 25px;
-  }
-
-@media (max-width: 1000px) {
+}
+@media (max-width: 1200px) {
     .texture {
         position: absolute;
         right: 0%;
@@ -315,11 +284,15 @@ box-shadow: inset 32px 5px 57px -37px rgba(0,0,0,0.08);
     .rightSide {
       position: absolute;
       top: 0;
-      right: -80%;
-      width: 75%;
+      right: -53%;
+      width: 50%;
       transition: right 0.3s ease;
       z-index: 4;
       box-shadow: -10px 0 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .priceSummary {
+        width: 75%;
     }
   
     .rightSide.showRightSide {
@@ -336,5 +309,57 @@ box-shadow: inset 32px 5px 57px -37px rgba(0,0,0,0.08);
         z-index: 2;
     }
 
-  }
+    .backButton {
+        right: 9%;
+    }
+
+}
+@media (max-width: 900px) {
+    .titleDesc {
+        width: 30%;
+    }
+    .quantityControl {
+        left: 65%;
+    }
+}
+@media (max-width: 750px) {
+
+    .leftSide {
+        width: 77%;
+    }
+
+    .rightSide {
+        right: -80%;
+        width: 75%;
+    }
+
+    .titleDesc h3 {
+        font-size: 18px;
+    }
+    .titleDesc p {
+        font-size: 12px;
+    }
+    .quantityControl {
+        left: 62.5%;
+    }
+    .productPrice {
+        font-size: 16px;
+    }
+}
+@media (max-width: 600px) {
+    .titleDesc {
+        overflow: hidden;
+        width: 27%;
+    }
+
+    .titleDesc p {
+        overflow: hidden;
+        width: 75%;
+        height: 25%;
+        opacity: 75%;
+    }
+    .quantityControl {
+        left: 55%;
+    }
+}
   
