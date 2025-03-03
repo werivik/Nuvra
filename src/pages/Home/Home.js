@@ -13,16 +13,20 @@ function Home() {
   const [visibleCount, setVisibleCount] = useState(8);
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     fetch('https://v2.api.noroff.dev/online-shop')
       .then(res => res.json())
       .then((response) => {
         const productsData = response.data;
         setProducts(Array.isArray(productsData) ? productsData : []);
       })
-      .catch((error) => console.error("Error fetching products:", error));
+      .catch((error) => console.error("Error fetching products:", error))
+      .finally(() => setLoading(false));
   }, []);
+  
 
   const loadMore = () => {
     setVisibleCount(prevCount => Math.min(prevCount + 8, products.length));
@@ -118,20 +122,23 @@ function Home() {
                 </ul>
               )}
             </div>
-            {filteredProducts.length > 0 ? (
-              <ul className={styles.productList}>
-                {filteredProducts.slice(0, visibleCount).map((product) => (
-                  <li key={product.id} className={styles.productCard}>
-                    <Link to={`/products/${product.id}`}>
-                      <img src={product.image.url} alt={product.title} className={styles.productImage} />
-                      <h2 className={styles.productTitle}>{product.title}</h2>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p>No products found.</p>
-            )}
+            {loading ? (
+  <div className="loader"></div>
+) : filteredProducts.length > 0 ? (
+  <ul className={styles.productList}>
+    {filteredProducts.slice(0, visibleCount).map((product) => (
+      <li key={product.id} className={styles.productCard}>
+        <Link to={`/products/${product.id}`}>
+          <img src={product.image.url} alt={product.title} className={styles.productImage} />
+          <h2 className={styles.productTitle}>{product.title}</h2>
+        </Link>
+      </li>
+    ))}
+  </ul>
+) : (
+  <p>No products found.</p>
+)}
+
             {visibleCount < filteredProducts.length && (
               <button onClick={loadMore} className={styles.loadMoreButton}>+</button>
             )}

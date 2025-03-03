@@ -15,6 +15,7 @@ export default function ShoppingCart() {
   const { cartItems, updateQuantity, removeFromCart, getTotalItems } = useShoppingCart();
   const [productsData, setProductsData] = useState([]);
   const [isRightSideOpen, setIsRightSideOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   const toggleRightSide = () => {
@@ -24,6 +25,7 @@ export default function ShoppingCart() {
   useEffect(() => {
     const fetchProductDetails = async () => {
       try {
+        setLoading(true);
         const detailsPromises = cartItems.map(item =>
           fetch(`https://v2.api.noroff.dev/online-shop/${item.id}`)
             .then(res => res.json())
@@ -34,8 +36,12 @@ export default function ShoppingCart() {
         );
         const products = await Promise.all(detailsPromises);
         setProductsData(products);
-      } catch (error) {
+      } 
+      catch (error) {
         console.error("Error fetching product details:", error);
+      }
+      finally {
+        setLoading(false);
       }
     };
 
@@ -64,6 +70,8 @@ export default function ShoppingCart() {
 
           {cartItems.length === 0 ? (
             <p className={styles.cartinfotext}>Your shopping cart is empty.</p>
+          ) : loading ? (
+            <div className="loader"></div>
           ) : (
             <div>
               <p>Total Items: {getTotalItems()}</p>
@@ -158,7 +166,9 @@ export const ShoppingCartProvider = ({ children }) => {
         return prevItems.map(item =>
           item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
         );
-      } else {
+      } 
+      
+      else {
         return [...prevItems, { ...product, quantity: 1 }];
       }
     });
