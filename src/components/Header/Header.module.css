@@ -103,3 +103,110 @@
       align-items: center;
       justify-content: center;
     }
+
+    .responsiveMenu {
+      display: none;
+      flex-direction: column;
+      justify-content: left;
+      gap: 30px;
+      background-color: pink;
+      padding-left: 25px;
+      padding-top: 75px;
+      position: absolute;
+      top: -30px;
+      left: 200%;
+      right: -75px;
+      width: 250px;
+      height: 100vh;
+      transition: right 0.25s ease-in-out;
+    }
+
+    .responsiveLinks {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      width: 100%;
+    }
+
+    .responsiveLinks .respoLink {
+      width: 90%;
+      height: 25px;
+      text-align: left;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .responsiveLinks .respoLink .cart {
+      width: 20px;
+      height: 25px;
+    }
+
+    .respoCart {
+      display: flex;
+      flex-direction: row;
+      gap: 15px;
+    }
+
+    .menuIcon {
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      position: absolute;
+      top: -15px;
+      right: -10px;
+      display: none;
+      transition: 0.25s;
+    }
+
+    .menuIcon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: 0.25s;
+    }
+
+    .showMenu {
+      left: 50%;
+      right: 0%;
+      transition: right 0.25s ease-in-out;
+    }
+
+    .logo2 {
+      display: none;
+      position: absolute;
+      top: -17.5px;
+      text-decoration: none;
+      color: black;
+      font-size: 30px;
+      font-weight: bolder;
+    }
+
+    @media screen and (max-width: 950px) {
+      .rightside {
+        gap: 35px;
+      }
+    }
+    @media screen and (max-width: 650px) {
+      .leftside, .rightside {
+        display: none;
+      }
+      .responsiveMenu {
+        display: flex;
+        transition: 0.25s;
+      }
+      .menu {
+        display: none;
+        transition: 0.25s;
+      }
+      .menuIcon {
+        display: block;
+        z-index: 999;
+        transition: 0.25s;
+      }
+
+      .logo2 {
+        display: flex;
+      }
+    }
