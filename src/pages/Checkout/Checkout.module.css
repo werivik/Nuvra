@@ -37,6 +37,7 @@
 
 .checkoutBorder p {
     text-align: center;
+    width: 80%
 }
 
 .cartSummary {
@@ -107,3 +108,22 @@
     flex-direction: column;
     gap: 10px;
 }
+@media (max-width: 1100px) {
+    .cartSummary {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .checkoutBorder h1 {
+        font-size: 35px;
+        margin-bottom: 15px;
+    }
+    .sucessIcon {
+        width: 55px;
+        height:55px;
+    }
+    .cartSummary {
+        width:60%;
+    }
+} 
