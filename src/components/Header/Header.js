@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useShoppingCart } from "../../pages/ShoppingCart/ShoppingCart";
 import styles from "./Header.module.css";
@@ -10,6 +10,18 @@ function Header() {
   const { getTotalItems } = useShoppingCart();
   const totalItems = getTotalItems();
   const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.classList.add(styles.noScroll);
+      document.body.classList.add(styles.blurBackground);
+    } 
+    
+    else {
+      document.body.classList.remove(styles.noScroll);
+      document.body.classList.remove(styles.blurBackground);
+    }
+  }, [menuOpen]);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -58,3 +70,4 @@ function Header() {
 }
 
 export default Header;
+
