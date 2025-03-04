@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useShoppingCart } from "../ShoppingCart/ShoppingCart";
 import styles from "./Shipping.module.css";
 import texture from '../../../media/leavesshadow.png';
 
 export default function Shipping() {
   const navigate = useNavigate();
+  const { cartItems } = useShoppingCart();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -14,12 +16,21 @@ export default function Shipping() {
     address: "",
     cardHolder: "",
     cardNumber: "",
-    expirationDate: "",
+    expirationMonth: "",
+    expirationYear: "",
     cvc: "",
   });
 
   const [errors, setErrors] = useState({});
-  
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  useEffect(() => {
+    if (cartItems.length > 0) {
+      const price = cartItems.reduce((total, item) => total + (item.discountedPrice * item.quantity), 0);
+      setTotalPrice(price);
+    }
+  }, [cartItems]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -35,8 +46,13 @@ export default function Shipping() {
     if (!formData.address.trim()) newErrors.address = "Address is required";
     if (!formData.cardHolder.trim()) newErrors.cardHolder = "Cardholder name is required";
     if (!formData.cardNumber.match(/^\d{16}$/)) newErrors.cardNumber = "Card number must be 16 digits";
-    if (!formData.expirationDate.match(/^(0[1-9]|1[0-2])\/\d{2}$/)) newErrors.expirationDate = "Use MM/YY format";
+    if (!formData.expirationMonth || !formData.expirationYear) newErrors.expirationDate = "Expiration date is required";
     if (!formData.cvc.match(/^\d{3}$/)) newErrors.cvc = "CVC must be 3 digits";
+
+    if (formData.expirationMonth && formData.expirationYear) {
+      const isValid = validateExpirationDate(formData.expirationMonth, formData.expirationYear);
+      if (!isValid) newErrors.expirationDate = "Invalid expiration date";
+    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -55,7 +71,7 @@ export default function Shipping() {
       return { value: month, label: month };
     });
   };
-  
+
   const getYears = () => {
     const currentYear = new Date().getFullYear();
     return Array.from({ length: 6 }, (_, i) => {
@@ -63,13 +79,13 @@ export default function Shipping() {
       return { value: year, label: year };
     });
   };
-  
+
   const validateExpirationDate = (month, year) => {
     const currentDate = new Date();
     const selectedDate = new Date(`20${year}`, month - 1);
     return selectedDate >= currentDate;
   };
-  
+
   const handleExpirationChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -77,7 +93,7 @@ export default function Shipping() {
       [name]: value,
     }));
   };
-  
+
   const handleExpirationBlur = () => {
     const isValid = validateExpirationDate(formData.expirationMonth, formData.expirationYear);
     setErrors((prevErrors) => ({
@@ -92,9 +108,12 @@ export default function Shipping() {
             <img src={texture} alt="texture" className={styles.texture} />
         </div>
         <div className={styles.shippingBorder}>
-        <h1>Order Confirmation</h1>
-      <form onSubmit={handleSubmit} className={styles.shippingForm}>
-        <div className={styles.nameForm}>
+            
+            <form onSubmit={handleSubmit} className={styles.shippingForm}>
+
+            <h1>Order Confirmation</h1>
+
+                <div className={styles.nameForm}>
         <div className={styles.formGroup}>
           <label>First Name</label>
           <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} />
@@ -105,8 +124,9 @@ export default function Shipping() {
           <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} />
           {errors.lastName && <span className={styles.error}>{errors.lastName}</span>}
         </div>
-        </div>
-        <div className={styles.countryForm}> 
+                </div>
+
+                <div className={styles.countryForm}> 
         <div className={styles.formGroup}>
           <label>Country</label>
           <input type="text" name="country" value={formData.country} onChange={handleChange} />
@@ -118,79 +138,103 @@ export default function Shipping() {
           <input type="text" name="city" value={formData.city} onChange={handleChange} />
           {errors.city && <span className={styles.error}>{errors.city}</span>}
         </div>
-        </div>
-        <div className={styles.addressForm}>
-        <div className={styles.formGroup}>
-          <label>Address</label>
-          <input type="text" name="address" value={formData.address} onChange={handleChange} />
-          {errors.address && <span className={styles.error}>{errors.address}</span>}
-        </div>
+                </div>
+
+                <div className={styles.addressForm}>
+                    <div className={styles.formGroup}>
+                    <label>Address</label>
+                    <input type="text" name="address" value={formData.address} onChange={handleChange} />
+                    {errors.address && <span className={styles.error}>{errors.address}</span>}
+                </div>
 
         <div className={styles.formGroup}>
           <label>Postal Code</label>
-          <input type="text" name="postalCode" value={formData.postalCode} onChange={handleChange} />
+          <input type="text" name="postalCode" value={formData.postalCode} onChange={handleChange} className={styles.postalCode} maxLength="4"/>
           {errors.postalCode && <span className={styles.error}>{errors.postalCode}</span>}
         </div>
-        </div>
+                </div>
 
-        <h2>Payment Details</h2>
+                <h2>Payment Details</h2>
 
-        <div className={styles.cardRow1}> 
-        <div className={styles.formGroup}>
-          <label>Cardholder Name</label>
-          <input type="text" name="cardHolder" value={formData.cardHolder} onChange={handleChange} />
-          {errors.cardHolder && <span className={styles.error}>{errors.cardHolder}</span>}
-        </div>
-        <div className={styles.formGroup}>
-            <label>Expiration Date</label>
-            <div className={styles.expirationDate}>
-    <select
-      name="expirationMonth"
-      value={formData.expirationMonth}
-      onChange={handleExpirationChange}
-      onBlur={handleExpirationBlur}
-    >
-      <option value="">MM</option>
-      {getMonths().map((month) => (
-        <option key={month.value} value={month.value}>
-          {month.label}
-        </option>
-      ))}
-    </select>
+                <div className={styles.cardRow1}> 
+                    <div className={styles.formGroup}>
+                        <label>Cardholder Name</label>
+                        <input type="text" name="cardHolder" value={formData.cardHolder} onChange={handleChange} />
+                        {errors.cardHolder && <span className={styles.error}>{errors.cardHolder}</span>}
+                    </div>
+                    <div className={styles.formGroup}>
+                        <label>Expiration Date</label>
+                        <div className={styles.expirationDate}>
+                            <select
+                                name="expirationMonth"
+                                value={formData.expirationMonth}
+                                onChange={handleExpirationChange}
+                                onBlur={handleExpirationBlur}
+                            >
+                            <option value="">MM</option>
+                                {getMonths().map((month) => (
+                                <option key={month.value} value={month.value}>
+                                {month.label}
+                            </option>
+                            ))}
+                            </select>
 
-    <select
-      name="expirationYear"
-      value={formData.expirationYear}
-      onChange={handleExpirationChange}
-      onBlur={handleExpirationBlur}
-    >
-      <option value="">YY</option>
-      {getYears().map((year) => (
-        <option key={year.value} value={year.value}>
-          {year.label}
-        </option>
-      ))}
-    </select>
-  </div>
-  {errors.expirationDate && <span className={styles.error}>{errors.expirationDate}</span>}
-        </div>
-        </div>
+                            <select
+                                name="expirationYear"
+                                value={formData.expirationYear}
+                                onChange={handleExpirationChange}
+                                onBlur={handleExpirationBlur}
+                            >
+                            <option value="">YY</option>
+                                {getYears().map((year) => (
+                                <option key={year.value} value={year.value}>
+                                {year.label}
+                            </option>
+                            ))}
+                            </select>
+                        </div>
+                        {errors.expirationDate && <span className={styles.error}>{errors.expirationDate}</span>}
+                    </div>
+                </div>
 
-        <div className={styles.cardRow2}>
-        <div className={styles.formGroup}>
-          <label>Card Number</label>
-          <input type="text" name="cardNumber" value={formData.cardNumber} onChange={handleChange} maxLength="16" />
-          {errors.cardNumber && <span className={styles.error}>{errors.cardNumber}</span>}
-        </div>
-          <div className={styles.formGroup}>
-            <label>CVC</label>
-            <input type="text" name="cvc" value={formData.cvc} onChange={handleChange} maxLength="3" className={styles.cvc} />
-            {errors.cvc && <span className={styles.error}>{errors.cvc}</span>}
-          </div>
-        </div>
+                <div className={styles.cardRow2}>
+                    <div className={styles.formGroup}>
+                        <label>Card Number</label>
+                        <input type="text" name="cardNumber" value={formData.cardNumber} onChange={handleChange} maxLength="16" />
+                        {errors.cardNumber && <span className={styles.error}>{errors.cardNumber}</span>}
+                    </div>
+                    <div className={styles.formGroup}>
+                        <label>CVC</label>
+                        <input type="text" name="cvc" value={formData.cvc} onChange={handleChange} maxLength="3" className={styles.cvc} />
+                        {errors.cvc && <span className={styles.error}>{errors.cvc}</span>}
+                    </div>
+                </div>
 
-        <button type="submit" className={styles.submitButton}>Submit</button>
-      </form>
+                <div className={styles.submitBorder}>
+                    <button type="submit" className={styles.submitButton}>Submit</button>
+                </div>
+
+            </form>
+
+            <div className={styles.productList}>
+          {cartItems.length === 0 ? (
+            <p>Your cart is empty.</p>
+          ) : (
+            <ul className={styles.cartList}>
+              <p className={styles.totalPrice}><strong>Total Price: </strong>$ {totalPrice.toFixed(2)}</p>
+              {cartItems.map((item) => (
+                <li key={item.id} className={styles.cartItem}>
+                  <img src={item.image.url} alt={item.title} width={100} />
+                  <div className={styles.productInfo}>
+                    <h4>{item.title}</h4>
+                    <p>Quantity: {item.quantity}</p>
+                    <p>Price: ${(item.discountedPrice * item.quantity).toFixed(2)}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
         </div>
     </div>
   );
