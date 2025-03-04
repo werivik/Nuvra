@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useShoppingCart } from "../../pages/ShoppingCart/ShoppingCart";
+import { useShoppingCart } from "../ShoppingCart/ShoppingCart";
 import { useNavigate } from "react-dom";
 import styles from './Checkout.module.css';
 import successIcon from '/media/icons/success.png';

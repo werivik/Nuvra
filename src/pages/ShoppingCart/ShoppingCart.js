@@ -55,7 +55,7 @@ export default function ShoppingCart() {
   );
 
   const handleCheckout = () => {
-    navigate("/checkout");
+    navigate("/shipping");
   };
 
   return (
