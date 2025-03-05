@@ -93,6 +93,7 @@
       font-size: 16px;
       color: white;
       font-family: "Playfair Display", serif;
+      transition: 0.25s;
     }
   
     .cart {

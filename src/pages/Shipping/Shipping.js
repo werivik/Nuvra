@@ -34,6 +34,8 @@ export default function Shipping() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    const capitalizedValue = value.charAt(0).toUpperCase() + value.slice(1);
+    setFormData({ ...formData, [name]: capitalizedValue });
   };
 
   const validateForm = () => {
@@ -116,12 +118,12 @@ export default function Shipping() {
                 <div className={styles.nameForm}>
         <div className={styles.formGroup}>
           <label>First Name</label>
-          <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} />
+          <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} placeholder="Luke" />
           {errors.firstName && <span className={styles.error}>{errors.firstName}</span>}
         </div>
         <div className={styles.formGroup}>
           <label>Last Name</label>
-          <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} />
+          <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} placeholder="Skywalker" />
           {errors.lastName && <span className={styles.error}>{errors.lastName}</span>}
         </div>
                 </div>
@@ -129,13 +131,13 @@ export default function Shipping() {
                 <div className={styles.countryForm}> 
         <div className={styles.formGroup}>
           <label>Country</label>
-          <input type="text" name="country" value={formData.country} onChange={handleChange} />
+          <input type="text" name="country" value={formData.country} onChange={handleChange} placeholder="Tatooine" />
           {errors.country && <span className={styles.error}>{errors.country}</span>}
         </div>
 
         <div className={styles.formGroup}>
           <label>City</label>
-          <input type="text" name="city" value={formData.city} onChange={handleChange} />
+          <input type="text" name="city" value={formData.city} onChange={handleChange} placeholder="Temple Island" />
           {errors.city && <span className={styles.error}>{errors.city}</span>}
         </div>
                 </div>
@@ -143,13 +145,13 @@ export default function Shipping() {
                 <div className={styles.addressForm}>
                     <div className={styles.formGroup}>
                     <label>Address</label>
-                    <input type="text" name="address" value={formData.address} onChange={handleChange} />
+                    <input type="text" name="address" value={formData.address} onChange={handleChange} placeholder="Street Name" />
                     {errors.address && <span className={styles.error}>{errors.address}</span>}
                 </div>
 
         <div className={styles.formGroup}>
           <label>Postal Code</label>
-          <input type="text" name="postalCode" value={formData.postalCode} onChange={handleChange} className={styles.postalCode} maxLength="4"/>
+          <input type="text" name="postalCode" value={formData.postalCode} onChange={handleChange} className={styles.postalCode} maxLength="4" placeholder="1234" />
           {errors.postalCode && <span className={styles.error}>{errors.postalCode}</span>}
         </div>
                 </div>
@@ -159,7 +161,7 @@ export default function Shipping() {
                 <div className={styles.cardRow1}> 
                     <div className={styles.formGroup}>
                         <label>Cardholder Name</label>
-                        <input type="text" name="cardHolder" value={formData.cardHolder} onChange={handleChange} />
+                        <input type="text" name="cardHolder" value={formData.cardHolder} onChange={handleChange} placeholder="Luke Skywalker" />
                         {errors.cardHolder && <span className={styles.error}>{errors.cardHolder}</span>}
                     </div>
                     <div className={styles.formGroup}>
@@ -178,6 +180,8 @@ export default function Shipping() {
                             </option>
                             ))}
                             </select>
+
+                            /
 
                             <select
                                 name="expirationYear"
@@ -200,12 +204,12 @@ export default function Shipping() {
                 <div className={styles.cardRow2}>
                     <div className={styles.formGroup}>
                         <label>Card Number</label>
-                        <input type="text" name="cardNumber" value={formData.cardNumber} onChange={handleChange} maxLength="16" />
+                        <input type="text" name="cardNumber" value={formData.cardNumber} onChange={handleChange} maxLength="16" placeholder="1234 567 8910 11121" />
                         {errors.cardNumber && <span className={styles.error}>{errors.cardNumber}</span>}
                     </div>
                     <div className={styles.formGroup}>
                         <label>CVC</label>
-                        <input type="text" name="cvc" value={formData.cvc} onChange={handleChange} maxLength="3" className={styles.cvc} />
+                        <input type="text" name="cvc" value={formData.cvc} onChange={handleChange} maxLength="3" className={styles.cvc} placeholder="123" />
                         {errors.cvc && <span className={styles.error}>{errors.cvc}</span>}
                     </div>
                 </div>

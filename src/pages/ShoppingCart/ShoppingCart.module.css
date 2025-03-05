@@ -222,6 +222,7 @@ box-shadow: inset 32px 5px 57px -37px rgba(0,0,0,0.08);
     padding: 4px 6px 4px 6px;
     font-size: 16px;
     transition: 0.25s;
+    font-family: "Playfair Display", serif;
 }
 .checkoutButton:hover {
     transition: 0.25s;
