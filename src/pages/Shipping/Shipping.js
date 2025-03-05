@@ -61,7 +61,7 @@ export default function Shipping() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      navigate("checkout");
+      navigate("/checkout");
     }
   };
 
@@ -234,7 +234,7 @@ export default function Shipping() {
               ))}
             </ul>
           )}
-        </div>
+            </div>
         </div>
     </div>
   );
