@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useShoppingCart } from "../../pages/ShoppingCart/ShoppingCart";
 import styles from "./Header.module.css";
-import shoppingbag from '/media/icons/shoppingbag.png';
-import openMenu from '/media/icons/openmenu.png';
-import defaultMenu from '/media/icons/defaultmenu.png';
+import shoppingbag from './media/icons/shoppingbag.png';
+import openMenu from './media/icons/openmenu.png';
+import defaultMenu from './media/icons/defaultmenu.png';
 
 function Header() {
   const { getTotalItems } = useShoppingCart();
