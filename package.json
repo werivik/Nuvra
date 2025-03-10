@@ -11,6 +11,8 @@
   "description": "",
   "dependencies": {
     "latest": "^0.2.0",
+    "netlify": "^13.3.3",
+    "netlify-cli": "^19.0.2",
     "node": "^23.8.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
