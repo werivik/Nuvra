@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useShoppingCart } from "../../pages/ShoppingCart/ShoppingCart";
 import styles from "./Header.module.css";
-import shoppingBag from '/media/icons/shoppingbag.png';
+import shoppingbag from '/media/icons/shoppingbag.png';
 import openMenu from '/media/icons/openmenu.png';
 import defaultMenu from '/media/icons/defaultmenu.png';
 
@@ -38,7 +38,7 @@ function Header() {
             <div className={styles.rightsidecart}> 
               <Link to="/ShoppingCart">
                 <p style={{ opacity: totalItems > 0 ? 1 : 0 }}>{totalItems}</p>
-                <img src={shoppingBag} alt="Shopping Bag" className={styles.cart} />
+                <img src={shoppingbag} alt="Shopping Bag" className={styles.cart} />
               </Link>
             </div>
           </li>
@@ -58,7 +58,7 @@ function Header() {
               <div className={styles.respoCart}>
                 <span>Shopping Cart</span>
                 <p style={{ opacity: totalItems > 0 ? 1 : 0 }}>{totalItems}</p>
-                <img src={shoppingBag} alt="Shopping Bag" className={styles.cart} />
+                <img src={shoppingbag} alt="Shopping Bag" className={styles.cart} />
               </div>
             </Link>
             <Link to="/Contact" className={styles.respoLink}>Contact Us</Link>
