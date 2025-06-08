@@ -105,8 +105,8 @@ Please ensure your code follows the existing style conventions and includes appr
 
 ## Contact
 
-[Your LinkedIn Profile](https://www.linkedin.com/in/weronika-vik-0844022a6/)
-[Your GitHub Profile](https://github.com/werivik)
+[LinkedIn](https://www.linkedin.com/in/weronika-vik-0844022a6/)
+[GitHub](https://github.com/werivik)
 
 ## License
 
